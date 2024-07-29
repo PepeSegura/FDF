@@ -6,6 +6,9 @@ CFLAGS	 =	-Wextra -Wall -Werror -Wunreachable-code
 CFLAGS	 += -I inc
 CFLAGS	 += -I libft
 CFLAGS	 += -O3
+
+DEBUG	 =	-g3 -fsanitize=address,leak
+
 CPPFLAGS =	-MMD
 
 LIBMLX	= ./libs/MLX42
@@ -17,9 +20,12 @@ LIBS	=	$(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 LIBS	+=	$(LIBFT)/libft.a
 
 
-SRCS =					\
-		srcs/main.c		\
-		srcs/mlx_tools.c\
+SRCS =						\
+		srcs/main.c			\
+		srcs/mlx_tools.c	\
+		srcs/parse_input.c	\
+		srcs/errors.c		\
+
 
 
 OBJS = $(patsubst srcs/%.c, objs/srcs/%.o, $(SRCS))
@@ -34,7 +40,7 @@ libft:
 	@make -C $(LIBFT)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME) && printf "Linking: $(NAME)\n"
+	$(CC) $(DEBUG) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME) && printf "Linking: $(NAME)\n"
 
 objs/srcs/%.o: ./srcs/%.c
 	@mkdir -p $(dir $@)
