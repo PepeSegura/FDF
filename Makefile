@@ -25,6 +25,7 @@ SRCS =						\
 		srcs/mlx_tools.c	\
 		srcs/parse_input.c	\
 		srcs/errors.c		\
+		srcs/t_map.c		\
 
 
 

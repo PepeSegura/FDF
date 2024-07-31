@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:40:15 by psegura-          #+#    #+#             */
-/*   Updated: 2024/07/29 18:13:06 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/07/31 19:40:57 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    create_point(int nbr, long color)
 	point.color = color;
 	point.z = nbr;
 
-	printf("Point: x[%d] y[%d] z[%d] c[%ld]\n", point.x, point.y, point.z, point.color);
+	// printf("Point: x[%d] y[%d] z[%d] c[%ld]\n", point.x, point.y, point.z, point.color);
 }
 
 void    parse_line(char *str, int line_count)
@@ -72,13 +72,15 @@ void	create_map(t_map *map)
 		ft_perror(map->str);
 
     int line_count = 0;
+	init_map(map);
     while (1)
     {
         line = get_next_line(fd);
         if (!line)
             break;
         // ft_dprintf(2, "line %d: %s", line_count, line);
-        parse_line(line, line_count);
+		add_line(map, line);
+        // parse_line(line, line_count);
         free(line);
         line_count++;
     }
