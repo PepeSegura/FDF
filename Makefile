@@ -7,7 +7,7 @@ CFLAGS	 += -I inc
 CFLAGS	 += -I libft
 CFLAGS	 += -O3
 
-DEBUG	 =	-g3 -fsanitize=address,leak
+# DEBUG	 =	-g3 -fsanitize=address,leak
 
 CPPFLAGS =	-MMD
 
@@ -26,7 +26,7 @@ SRCS =						\
 		srcs/parse_input.c	\
 		srcs/errors.c		\
 		srcs/t_map.c		\
-
+		srcs/matrix.c		\
 
 
 OBJS = $(patsubst srcs/%.c, objs/srcs/%.o, $(SRCS))
@@ -35,7 +35,7 @@ DEPS = $(OBJS:.o=.d)
 all: libmlx libft $(NAME)
 
 libmlx:
-	@cmake -DDEBUG=1 $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@cmake  $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 libft:
 	@make -C $(LIBFT)
