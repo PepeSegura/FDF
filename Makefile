@@ -2,7 +2,7 @@ MAKEFLAGS	= --no-print-directory --silent
 
 NAME	 = fdf
 
-CFLAGS	 =	-Wextra -Wall -Werror -Wunreachable-code 
+CFLAGS	 =	-Wextra -Wall -Werror -Wunreachable-code
 CFLAGS	 += -I inc
 CFLAGS	 += -I libft
 CFLAGS	 += -O3

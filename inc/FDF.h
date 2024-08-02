@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/03 00:38:57 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/03 01:02:59 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 #define BPP sizeof(int32_t)
 
-# define SCREEN_WIDTH 1280.0
-# define SCREEN_HEIGHT 720.0
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 720
 
 # define ANGLE (M_PI / 4)
 # define PI		3.14
