@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:14:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/02 17:55:43 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:23:51 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ t_point	mul_mat(const double m[3][3], t_point p)
 	result.x = (m[0][0] * p.x) + (m[0][1] * p.y) + (m[0][2] * p.z);
 	result.y = (m[1][0] * p.x) + (m[1][1] * p.y) + (m[1][2] * p.z);
 	result.z = (m[2][0] * p.x) + (m[2][1] * p.y) + (m[1][2] * p.z);
+    result.color = p.color;
 	return (result);
 }

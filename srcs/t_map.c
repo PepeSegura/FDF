@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/02 15:49:16 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:24:26 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	print_map(t_map *map)
 	int	j;
 
 	i = 0;
+	printf("\nSTART\n");
 	while (i < map->actual_size)
 	{
 		j = 0;
@@ -30,6 +31,7 @@ void	print_map(t_map *map)
 		printf("\n");
 		i++;
 	}
+	printf("\nEND\n");
 }
 
 void	init_map(t_map *map)
