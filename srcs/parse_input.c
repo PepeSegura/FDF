@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:40:15 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/01 18:14:06 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:25:15 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_map(t_map *map)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		add_line(map, line);
 		free(line);
 	}

@@ -1,6 +1,6 @@
 MAKEFLAGS	= --no-print-directory --silent
 
-NAME	 = FDF
+NAME	 = fdf
 
 CFLAGS	 =	-Wextra -Wall -Werror -Wunreachable-code 
 CFLAGS	 += -I inc
@@ -27,6 +27,7 @@ SRCS =						\
 		srcs/errors.c		\
 		srcs/t_map.c		\
 		srcs/matrix.c		\
+		srcs/modify_map.c	\
 
 
 OBJS = $(patsubst srcs/%.c, objs/srcs/%.o, $(SRCS))
@@ -35,7 +36,7 @@ DEPS = $(OBJS:.o=.d)
 all: libmlx libft $(NAME)
 
 libmlx:
-	@cmake  $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@cmake -DDEBUG=1 $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 libft:
 	@make -C $(LIBFT)

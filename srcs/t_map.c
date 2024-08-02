@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/01 21:32:29 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:49:16 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	print_map(t_map *map)
 {
-	int	i = 0;
+	int	i;
 	int	j;
 
+	i = 0;
 	while (i < map->actual_size)
 	{
 		j = 0;
 		while (j < map->min_wide)
 		{
-			printf("(%.2d, %.2d) ", map->points[i][j].x, map->points[i][j].y);
+			printf("(%.2d, %.2d, %.2d) ", map->points[i][j].x,
+				map->points[i][j].y, map->points[i][j].z);
 			j++;
 		}
 		printf("\n");
@@ -60,6 +62,7 @@ void	resize_map(t_map *map)
 }
 
 #define VALID_CHARS "+-0123456789,xabcdef \f\n\r\t\v"
+#define DIGITS_SYMBOLS "0123456789+-"
 
 int	count_points(char *str)
 {
@@ -74,7 +77,7 @@ int	count_points(char *str)
 			ft_error("Invalid CHAR");
 		while (str[i] && ft_isspace(str[i]))
 			i++;
-		if (str[i] && (ft_isdigit(str[i]) || str[i] == '-' || str[i] == '+'))
+		if (str[i] && ft_strchr(DIGITS_SYMBOLS, str[i]))
 		{
 			count++;
 			while (str[i] && !ft_isspace(str[i]))
@@ -90,9 +93,7 @@ int	count_points(char *str)
 
 void	skip_digits_and_set_color(t_point *point, char *line, int *i)
 {
-	if (line[*i] == '-' || line[*i] == '+')
-        (*i)++;
-	while (line[*i] && (ft_isdigit(line[*i]) || line[*i] == '-' || line[*i] == '+'))
+	while (line[*i] && ft_strchr(DIGITS_SYMBOLS, line[*i]))
 		(*i)++;
 	while (line[*i] && ft_isspace(line[*i]))
 		(*i)++;
@@ -113,8 +114,8 @@ void	init_point(t_point *point, int x, int y)
 
 void	init_points_line(char *line, t_point *points_line, int map_actual_size)
 {
-	int		i;
-	int		point;
+	int	i;
+	int	point;
 
 	i = 0;
 	point = 0;
@@ -122,7 +123,7 @@ void	init_points_line(char *line, t_point *points_line, int map_actual_size)
 	{
 		while (line[i] && ft_isspace(line[i]))
 			i++;
-		if (line[i] && (ft_isdigit(line[i]) || line[i] == '-' || line[i] == '+'))
+		if (line[i] && ft_strchr(DIGITS_SYMBOLS, line[i]))
 		{
 			init_point(&points_line[point], point, map_actual_size);
 			points_line[point].z = (ft_atoi(&line[i]) << 8) | 0xFF;
@@ -131,9 +132,9 @@ void	init_points_line(char *line, t_point *points_line, int map_actual_size)
 		}
 		else
 		{
-            while (line[i] && !ft_isspace(line[i]))
-                i++;
-        }
+			while (line[i] && !ft_isspace(line[i]))
+				i++;
+		}
 	}
 }
 
@@ -146,7 +147,7 @@ void	add_line(t_map *map, char *line)
 		resize_map(map);
 	size_line = count_points(line);
 	if (size_line == 0)
-		ft_error("There is an mpty line");
+		ft_error("There is an empty line");
 	if (size_line < map->min_wide)
 		map->min_wide = size_line;
 	points_line = ft_calloc(size_line, sizeof(t_point));

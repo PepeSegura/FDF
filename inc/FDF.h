@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FDF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/01 22:02:10 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:57:21 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@
 # define SCREEN_WIDTH 1280
 # define SCREEN_HEIGHT 720
 
-# define ROTATE_ANGLE (M_PI / 4)
-// # define ROTATE_ANGLE 0.2
+# define ANGLE (M_PI / 4)
 
 typedef struct s_point
 {
@@ -65,11 +64,14 @@ void	init_map(t_map *map);
 void	add_line(t_map *map, char *line);
 
 /* matrix.c */
-const double (*get_projection_array(void))[3];
-const double (*get_rotate_x_array(void))[3];
-const double (*get_rotate_y_array(void))[3];
-const double (*get_rotate_z_array(void))[3];
-t_point    mult_matrix(const double matrix[3][3], t_point point);
+const double	(*get_projection(void))[3];
+const double	(*get_rot_x(double angle))[3];
+const double	(*get_rot_y(double angle))[3];
+const double	(*get_rot_z(double angle))[3];
+t_point			mul_mat(const double matrix[3][3], t_point point);
+
+/* modify_map.c */
+void	rotate_map(t_map *map);
 
 /* mlx_tools.c */
 int get_rgba(int r, int g, int b, int a);
