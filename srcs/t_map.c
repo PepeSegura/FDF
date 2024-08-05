@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/02 23:24:26 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:04:57 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	skip_digits_and_set_color(t_point *point, char *line, int *i)
 		(*i)++;
 	if (line[*i] == ',')
 	{
-		point->color = ft_atol_16(&line[*i + 3]);
+		point->color = ft_atol_16(&line[*i + 3]); // (ft_atoi(&line[i]) << 8) | 0xFF;
 		while (line[*i] && line[*i] != ' ')
 			(*i)++;
 	}
@@ -128,7 +128,7 @@ void	init_points_line(char *line, t_point *points_line, int map_actual_size)
 		if (line[i] && ft_strchr(DIGITS_SYMBOLS, line[i]))
 		{
 			init_point(&points_line[point], point, map_actual_size);
-			points_line[point].z = (ft_atoi(&line[i]) << 8) | 0xFF;
+			points_line[point].z = ft_atoi(&line[i]);
 			skip_digits_and_set_color(&points_line[point], line, &i);
 			point++;
 		}

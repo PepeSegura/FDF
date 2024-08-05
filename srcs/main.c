@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:58:58 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/03 01:14:45 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:12:01 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int	main(int argc, char **argv)
 	printf("WIDE_MAP: [%d]\n", fdf.map.min_wide);
 	printf("HEIGHT_MAP: [%d]\n", fdf.map.actual_size);
 	// print_map(&fdf.map);
-	// rotate_map(&fdf.map);
+	rotate_map(&fdf.map);
 	// print_map(&fdf.map);
 	mlx_stuff(&fdf);
 	// t_point p1 = {.x = 10, .y = 10, .z = 30};
