@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/05 12:07:25 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:33:06 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@
 # include "libft.h"
 # include "MLX42/MLX42.h"
 
+# define FILE_EXT ".fdf"
+
 # define DEFAULT_COLOR 0xFF0000FF
 
-#define BPP sizeof(int32_t)
+# define BPP sizeof(int32_t)
 
 # define SCREEN_WIDTH 1280
 # define SCREEN_HEIGHT 720
@@ -90,6 +92,9 @@ int get_r(int rgba);
 int get_g(int rgba);
 int get_b(int rgba);
 int get_a(int rgba);
+
+/* points_tools.c */
+int calc_distance(t_point a, t_point b);
 
 /* errors.c */
 void	ft_perror(char *msg);

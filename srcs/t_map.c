@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/05 12:04:57 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/07 21:39:09 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	init_map(t_map *map)
 
 void	resize_map(t_map *map)
 {
+	printf("resizing\n");
 	t_point	**new_points;
 	int		i;
 
@@ -145,6 +146,7 @@ void	add_line(t_map *map, char *line)
 	int		size_line;
 	t_point	*points_line;
 
+	
 	if (map->actual_size == map->max_size)
 		resize_map(map);
 	size_line = count_points(line);

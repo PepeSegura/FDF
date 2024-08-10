@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:58:58 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/05 13:12:01 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/10 20:50:39 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,23 +144,71 @@ void	print_point(t_point point)
 	printf("\n");
 }
 
-int	main(int argc, char **argv)
-{
-	t_fdf	fdf;
+// int	main(int argc, char **argv)
+// {
+// 	t_fdf	fdf;
 
-	(void)argc, (void)argv;
-	ft_bzero(&fdf, sizeof(fdf));
-	parse_input(argc, argv, &fdf);
-	printf("INPUT %s\n", fdf.map.str);
-	printf("WIDE_MAP: [%d]\n", fdf.map.min_wide);
-	printf("HEIGHT_MAP: [%d]\n", fdf.map.actual_size);
-	// print_map(&fdf.map);
-	rotate_map(&fdf.map);
-	// print_map(&fdf.map);
-	mlx_stuff(&fdf);
-	// t_point p1 = {.x = 10, .y = 10, .z = 30};
-	// print_point(p1);
-	// t_point p2 = mul_mat(get_rot_y(ANGLE), p1);
-	// print_point(p2);
-	exit(EXIT_SUCCESS);
+// 	(void)argc, (void)argv;
+// 	ft_bzero(&fdf, sizeof(fdf));
+// 	parse_input(argc, argv, &fdf);
+// 	printf("INPUT %s\n", fdf.map.str);
+// 	printf("WIDE_MAP: [%d]\n", fdf.map.min_wide);
+// 	printf("HEIGHT_MAP: [%d]\n", fdf.map.actual_size);
+// 	// print_map(&fdf.map);
+// 	rotate_map(&fdf.map);
+// 	// print_map(&fdf.map);
+// 	mlx_stuff(&fdf);
+// 	// t_point p1 = {.x = 10, .y = 10, .z = 30};
+// 	// print_point(p1);
+// 	// t_point p2 = mul_mat(get_rot_y(ANGLE), p1);
+// 	// print_point(p2);
+// 	exit(EXIT_SUCCESS);
+// }
+
+void plot_point(int x, int y) {
+    printf("(%d, %d)\n", x, y);
+}
+
+int	get_step(int a, int b)
+{
+	if (a < b)
+		return (1);
+	return (-1);
+}
+
+// Bresenham's Line Algorithm
+void bresenham_line(t_point a, t_point b)
+{
+    const int	dx = abs(b.x - a.x);
+    const int	dy = abs(b.y - a.y);
+    const int	sx = get_step(a.x, b.x);
+    const int	sy = get_step(a.y, b.y);
+    int			err;
+
+	err = dx - dy;
+    while (1)
+	{
+        plot_point(a.x, a.y);
+        if (a.x == b.x && a.y == b.y)
+			break;
+        int e2 = err * 2;
+        if (e2 > -dy)
+		{
+            err -= dy;
+            a.x += sx;
+        }
+        if (e2 < dx)
+		{
+            err += dx;
+            a.y += sy;
+        }
+    }
+}
+
+int main(void)
+{
+	t_point a = {.x=0, .y=0};
+	t_point b = {.x=1000, .y=100};
+
+	bresenham_line(a, b);
 }

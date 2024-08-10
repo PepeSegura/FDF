@@ -28,6 +28,7 @@ SRCS =						\
 		srcs/t_map.c		\
 		srcs/matrix.c		\
 		srcs/modify_map.c	\
+		srcs/points_tools.c \
 
 
 OBJS = $(patsubst srcs/%.c, objs/srcs/%.o, $(SRCS))
