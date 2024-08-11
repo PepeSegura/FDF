@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FDF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/10 12:33:06 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/12 00:07:00 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 
 # define BPP sizeof(int32_t)
 
-# define SCREEN_WIDTH 1280
-# define SCREEN_HEIGHT 720
+# define SCREEN_WIDTH 1080
+# define SCREEN_HEIGHT 1080
 
 # define ANGLE (M_PI / 4)
 # define PI		3.14
@@ -55,9 +55,25 @@ typedef struct s_map
 	char	*str;
 }   t_map;
 
+typedef struct s_offset
+{
+	int	center_x;
+	int	center_y;
+	int	min_x;
+	int	min_y;
+	int	max_x;
+	int	max_y;
+	int	x;
+	int	y;
+}	t_offset;
+
+
 typedef struct s_camera
 {
-	double	grid_space;
+	double		grid_space;
+	t_offset	offset;
+	int			offset_x;
+	int			offset_y;
 }	t_camera;
 
 typedef struct s_fdf
@@ -95,6 +111,22 @@ int get_a(int rgba);
 
 /* points_tools.c */
 int calc_distance(t_point a, t_point b);
+
+/* bresenham.c */
+typedef struct s_bresenham
+{
+    int	dx;
+    int	dy;
+    int	sx;
+    int	sy;
+    int	err;
+    int	err2;
+
+	int	total_steps;
+	int	current_step;
+} t_bresenham;
+
+void bresenham_line(t_fdf *fdf, t_point a, t_point b);
 
 /* errors.c */
 void	ft_perror(char *msg);

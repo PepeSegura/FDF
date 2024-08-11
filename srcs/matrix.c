@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:14:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/08 21:17:29 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:37:35 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FDF.h"
 
+inline double	rad(double deg)
+{
+	return (deg * M_PI / 180);
+}
+
 const double	(*get_projection(void))[3]
 {
 	static const double	projection_array[3][3] = {
-	{1, 0.5, 0},
-	{-1, 0.5, -0.5},
-	{0, 0, 0},
+	{0.866, -0.5, 0},  // cos(30°) for x, -sin(30°) for y
+    {0.5, 0.866, 0},   // sin(30°) for x, cos(30°) for y
+    {0, 0, 1}          // Z remains the same
 	};
 
 	return (projection_array);
@@ -45,11 +50,11 @@ const double	(*get_rot_y(double angle))[3]
 
 	rotate_y_array[0][0] = cos(angle);
 	rotate_y_array[0][1] = 0;
-	rotate_y_array[0][2] = sin(angle);
+	rotate_y_array[0][2] = -sin(angle);
 	rotate_y_array[1][0] = 0;
 	rotate_y_array[1][1] = 1;
 	rotate_y_array[1][2] = 0;
-	rotate_y_array[2][0] = -sin(angle);
+	rotate_y_array[2][0] = sin(angle);
 	rotate_y_array[2][1] = 0;
 	rotate_y_array[2][2] = cos(angle);
 	return ((const double (*)[3])rotate_y_array);
@@ -59,11 +64,11 @@ const double	(*get_rot_z(double angle))[3]
 {
 	static double	rotate_z_array[3][3];
 
-	rotate_z_array[0][0] = cos(angle);
-	rotate_z_array[0][1] = -sin(angle);
+	rotate_z_array[0][0] = cos(rad(angle));
+	rotate_z_array[0][1] = -sin(rad(angle));
 	rotate_z_array[0][2] = 0;
-	rotate_z_array[1][0] = sin(angle);
-	rotate_z_array[1][1] = cos(angle);
+	rotate_z_array[1][0] = sin(rad(angle));
+	rotate_z_array[1][1] = cos(rad(angle));
 	rotate_z_array[1][2] = 0;
 	rotate_z_array[2][0] = 0;
 	rotate_z_array[2][1] = 0;

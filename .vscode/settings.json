@@ -1,6 +1,8 @@
 {
     "cmake.sourceDirectory": "/home/psegura-/Desktop/new_FDF/libs/MLX42",
     "files.associations": {
-        "cmath": "c"
+        "cmath": "c",
+        "random": "c",
+        "string.h": "c"
     }
 }
