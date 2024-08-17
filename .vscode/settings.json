@@ -3,6 +3,7 @@
     "files.associations": {
         "cmath": "c",
         "random": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "limits": "c"
     }
 }

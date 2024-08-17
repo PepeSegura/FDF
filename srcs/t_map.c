@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/07 21:39:09 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/17 13:38:00 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_map(t_map *map)
 		j = 0;
 		while (j < map->min_wide)
 		{
-			printf("(%.2d, %.2d, %.2d) ", map->points[i][j].x,
+			printf("(%.2f, %.2f, %.2f) ", map->points[i][j].x,
 				map->points[i][j].y, map->points[i][j].z);
 			j++;
 		}

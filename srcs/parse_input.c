@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:40:15 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/10 12:49:35 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/17 22:11:14 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	calc_screen_ratio(t_fdf *fdf)
 	printf("SWIDE:   %f / %d = %f\n", (double)SCREEN_WIDTH, fdf->map.min_wide, ratio_width);
 	printf("SHEIGHT: %f / %d = %f\n", (double)SCREEN_HEIGHT, fdf->map.actual_size, ratio_height);
 	if (ratio_width < ratio_height)
-		fdf->cam.grid_space = ratio_width;
+		fdf->cam.scale = ratio_width;
 	else
-		fdf->cam.grid_space = ratio_height;
-	printf("SCREEN_RATIO: %f\n", fdf->cam.grid_space);
+		fdf->cam.scale = ratio_height;
+	printf("SCREEN_RATIO: %f\n", fdf->cam.scale);
 }
 
 void	check_filename(char *str)

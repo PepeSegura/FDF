@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/12 00:07:00 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/17 22:37:07 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 
 # define BPP sizeof(int32_t)
 
-# define SCREEN_WIDTH 1080
-# define SCREEN_HEIGHT 1080
+# define SCREEN_WIDTH 800
+# define SCREEN_HEIGHT 800
 
 # define ANGLE (M_PI / 4)
 # define PI		3.14
@@ -40,19 +40,28 @@
 
 typedef struct s_point
 {
-	int		x;
-	int 	y;
-	int 	z;
+	double	x;
+	double 	y;
+	double 	z;
 	long	color;
 }   t_point;
 
+typedef struct s_map_limits
+{
+	int	min_x;
+	int	min_y;
+	int	max_x;
+	int	max_y;
+}	t_map_limits;
+
 typedef struct s_map
 {
-	t_point **points;
-	int		min_wide;
-	int		max_size;
-	int		actual_size;
-	char	*str;
+	t_point 		**points;
+	int				min_wide;
+	int				max_size;
+	int				actual_size;
+	char			*str;
+	t_map_limits	limits;
 }   t_map;
 
 typedef struct s_offset
@@ -70,10 +79,19 @@ typedef struct s_offset
 
 typedef struct s_camera
 {
-	double		grid_space;
 	t_offset	offset;
+	
 	int			offset_x;
 	int			offset_y;
+
+	double		scale;
+
+	// TEST
+	double		x_deg;
+	double		y_deg;
+	double		z_deg;
+	double		depth_change;
+	// TEST
 }	t_camera;
 
 typedef struct s_fdf
@@ -82,6 +100,10 @@ typedef struct s_fdf
 	t_camera	cam;
 	mlx_image_t	*img;
 }   t_fdf;
+
+
+/* DELETEEE */
+void draw_map2(t_fdf *fdf);
 
 /* parse_input.c */
 void	parse_input(int argc, char **argv, t_fdf *fdf);
@@ -109,9 +131,24 @@ int get_g(int rgba);
 int get_b(int rgba);
 int get_a(int rgba);
 
-/* points_tools.c */
-int calc_distance(t_point a, t_point b);
+/* point_tools.c */
+t_point scale_point(t_point p, double scale);
+t_point offset_point(t_point p, t_fdf *fdf);
+t_point scale_and_offset(t_point p, t_fdf *fdf);
 
+/* projection.c */
+t_point isometric(t_point p, t_fdf *fdf);
+
+/* map_limits.c */
+void    set_map_limits(t_map *map, double scale, t_fdf *fdf);
+void    set_map_offsets(t_fdf *fdf);
+
+/* draw.c */
+void    draw_map(t_fdf *fdf);
+
+/* hooks.c */
+void    my_key_hook(mlx_key_data_t keydata, void* param);
+void	my_scrollhook(double xdelta, double ydelta, void *param);
 /* bresenham.c */
 typedef struct s_bresenham
 {
