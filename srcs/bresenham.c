@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 13:30:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/17 22:08:47 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/25 23:41:00 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void plot_point(t_fdf *fdf, int x, int y, long color)
 	// else
 	// {
 	// 	printf("Out of screen: (%d, %d) %ld\n", x, y, color);
-	// 	// exit(1);
 	// }
 }
 
@@ -79,6 +78,7 @@ inline t_channel init_channel(long color)
 
 	return (channel);
 }
+
 // Function to interpolate between two colors
 static long interpolate_color(long color1, long color2, float t)
 {
@@ -96,20 +96,13 @@ void bresenham_line(t_fdf *fdf, t_point a, t_point b)
 {
     t_bresenham	bre;
     float		t;
-	// printf("bresenham_line()\n");
-	// printf("A: (%.2f, %.2f)  ", a.x, a.y);
-	// printf("B: (%.2f, %.2f)\n", b.x, b.y);
     if (check_points(a, b) == 1)
         return;
     bre = init_struct(a, b);
     while (1)
     {
-		// if (a.x < 0 || a.y < 0 || a.x > SCREEN_WIDTH || a.y > SCREEN_HEIGHT)
-        //     break;
         t = (float)bre.current_step / bre.total_steps;
         plot_point(fdf, (int)a.x, (int)a.y, interpolate_color(a.color, b.color, t));
-        // if ((int)a.x == (int)b.x && (int)a.y == (int)b.y)
-        //     break;
 		if (abs((int)a.x - (int)b.x) <= 1 && abs((int)a.y - (int)b.y) <= 1)
             break;
         bre.err2 = bre.err * 2;

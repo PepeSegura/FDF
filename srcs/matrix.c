@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:14:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/11 22:37:35 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/25 23:22:02 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ inline double	rad(double deg)
 const double	(*get_projection(void))[3]
 {
 	static const double	projection_array[3][3] = {
-	{0.866, -0.5, 0},  // cos(30°) for x, -sin(30°) for y
-    {0.5, 0.866, 0},   // sin(30°) for x, cos(30°) for y
-    {0, 0, 1}          // Z remains the same
+	{1, 0, 0},
+    {0, 1, 0},
+    {0, 0, 0}
 	};
 
 	return (projection_array);

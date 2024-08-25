@@ -4,6 +4,7 @@
         "cmath": "c",
         "random": "c",
         "string.h": "c",
-        "limits": "c"
+        "limits": "c",
+        "fdf.h": "c"
     }
 }

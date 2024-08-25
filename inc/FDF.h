@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/17 22:37:07 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/26 00:50:01 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define SCREEN_WIDTH 800
 # define SCREEN_HEIGHT 800
 
-# define ANGLE (M_PI / 4)
 # define PI		3.14
 # define PI2	6.18
 # define PI05	1.57
@@ -64,27 +63,15 @@ typedef struct s_map
 	t_map_limits	limits;
 }   t_map;
 
-typedef struct s_offset
-{
-	int	center_x;
-	int	center_y;
-	int	min_x;
-	int	min_y;
-	int	max_x;
-	int	max_y;
-	int	x;
-	int	y;
-}	t_offset;
-
+#define X 0
+#define Y 1
 
 typedef struct s_camera
 {
-	t_offset	offset;
-	
-	int			offset_x;
-	int			offset_y;
-
+	int			offsets[2];
+	int			key_offset[2];
 	double		scale;
+	double		initial_scale;
 
 	// TEST
 	double		x_deg;
@@ -98,16 +85,13 @@ typedef struct s_fdf
 {
 	t_map   	map;
 	t_camera	cam;
+	mlx_t		*mlx;
 	mlx_image_t	*img;
 }   t_fdf;
 
 
-/* DELETEEE */
-void draw_map2(t_fdf *fdf);
-
 /* parse_input.c */
 void	parse_input(int argc, char **argv, t_fdf *fdf);
-void	parse_line(char *str, int line_count);
 
 /* t_map.c */
 void	print_map(t_map *map);
@@ -131,17 +115,11 @@ int get_g(int rgba);
 int get_b(int rgba);
 int get_a(int rgba);
 
-/* point_tools.c */
-t_point scale_point(t_point p, double scale);
-t_point offset_point(t_point p, t_fdf *fdf);
-t_point scale_and_offset(t_point p, t_fdf *fdf);
-
 /* projection.c */
 t_point isometric(t_point p, t_fdf *fdf);
 
 /* map_limits.c */
-void    set_map_limits(t_map *map, double scale, t_fdf *fdf);
-void    set_map_offsets(t_fdf *fdf);
+void set_offsets(t_fdf *fdf);
 
 /* draw.c */
 void    draw_map(t_fdf *fdf);
@@ -149,6 +127,7 @@ void    draw_map(t_fdf *fdf);
 /* hooks.c */
 void    my_key_hook(mlx_key_data_t keydata, void* param);
 void	my_scrollhook(double xdelta, double ydelta, void *param);
+
 /* bresenham.c */
 typedef struct s_bresenham
 {

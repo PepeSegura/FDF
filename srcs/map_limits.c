@@ -6,48 +6,67 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 13:24:21 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/17 22:22:08 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/26 00:36:57 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FDF.h"
 
-void set_map_limits(t_map *map, double scale, t_fdf *fdf) {
-    t_point p;
-    int i, j;
+static t_map_limits set_map_limits(void)
+{
+    t_map_limits    limits;
 
-    // Initialize map limits
-    map->limits.min_x = INT32_MAX;
-    map->limits.max_x = -INT32_MAX;
-    map->limits.min_y = INT32_MAX;
-    map->limits.max_y = -INT32_MAX;
+    limits.max_x = INT_MIN;
+    limits.max_y = INT_MIN;
+    limits.min_x = INT_MAX;
+    limits.min_y = INT_MAX;
+    return (limits);
+}
 
-    for (i = 0; i < map->actual_size; i++) {
-        for (j = 0; j < map->min_wide; j++) {
-            p = isometric(scale_point(map->points[i][j], scale), fdf);
-            // Update map limits
-            if (p.x < map->limits.min_x)
-                map->limits.min_x = p.x;
-            if (p.x > map->limits.max_x)
-                map->limits.max_x = p.x;
-            if (p.y < map->limits.min_y)
-                map->limits.min_y = p.y;
-            if (p.y > map->limits.max_y)
-                map->limits.max_y = p.y;
+void get_bounding_box(t_map *map, double scale)
+{
+    int             i;
+    int             j;
+    t_map_limits    limits;
+
+    limits = set_map_limits();
+    i = 0;
+    while (i < map->actual_size)
+    {
+        j = 0;
+        while (j < map->min_wide)
+        {
+            if (map->points[i][j].x * scale < limits.min_x)
+                limits.min_x = map->points[i][j].x * scale;
+            if (map->points[i][j].x * scale > limits.max_x)
+                limits.max_x = map->points[i][j].x * scale;
+            if (map->points[i][j].y * scale < limits.min_y)
+                limits.min_y = map->points[i][j].y * scale;
+            if (map->points[i][j].y * scale > limits.max_y)
+                limits.max_y = map->points[i][j].y * scale;
+            j++;
         }
+        i++;
     }
+    map->limits = limits;
 }
 
-void set_map_offsets(t_fdf *fdf) {
-    // Calculate map center
-    double map_center_x = (fdf->map.limits.min_x + fdf->map.limits.max_x) / 2.0;
-    double map_center_y = (fdf->map.limits.min_y + fdf->map.limits.max_y) / 2.0;
+void set_offsets(t_fdf *fdf)
+{
+    // Calculate the bounding box of the scaled points
+    get_bounding_box(&fdf->map, fdf->cam.scale);
+    printf("getbounding: min X: %d Y: %d - max X: %d Y: %d\n", fdf->map.limits.min_x, fdf->map.limits.min_y, fdf->map.limits.max_x, fdf->map.limits.max_y);
+    int center[2];
 
-    // Calculate screen center
-    double screen_center_x = SCREEN_WIDTH / 2.0;
-    double screen_center_y = SCREEN_HEIGHT / 2.0;
+    // Calculate the center of the bounding box
+    center[X] = (fdf->map.limits.min_x + fdf->map.limits.max_x) / 2;
+    center[Y] = (fdf->map.limits.min_y + fdf->map.limits.max_y) / 2;
+    printf("center: X: %d Y: %d\n", center[X], center[Y]);
 
-    // Calculate offsets needed to center the map on the screen
-    fdf->cam.offset_x = round(screen_center_x - map_center_x);
-    fdf->cam.offset_y = round(screen_center_y - map_center_y);
+    // Calculate the offset to center the image in the window
+    fdf->cam.offsets[X] = ((SCREEN_WIDTH / 2) - center[X]) + fdf->cam.key_offset[X];
+    fdf->cam.offsets[Y] = ((SCREEN_HEIGHT / 2) - center[Y]) + fdf->cam.key_offset[Y];
+
+    printf("setofsets() X: %d Y: %d\n", fdf->cam.offsets[X], fdf->cam.offsets[Y]);
 }
+

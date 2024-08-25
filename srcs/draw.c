@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:34:16 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/17 22:08:04 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/25 23:33:03 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,55 @@ void    draw_cross(t_fdf *fdf)
         mlx_put_pixel(fdf->img, SCREEN_WIDTH / 2, j, 0xFF00FF);
 }
 
-void    draw_map(t_fdf *fdf)
+t_point set_point(t_point s, t_camera cam)
 {
-    printf("draw_map()\n");
-    int     i;
-    int     j;
-    t_point p1;
-    t_map   map;
+    t_point d;
 
-    map = fdf->map;
+    d.x = s.x * cam.scale + cam.offsets[X];
+    d.y = s.y * cam.scale + cam.offsets[Y];
+    d.z = s.z;
+    d.color = s.color;
+    return (d);
+}
+
+void draw_map(t_fdf *fdf)
+{
+    t_point **points;
+    int i;
+    int j;
+
+    points = fdf->map.points;
+
+    set_offsets(fdf);
+
+    // Clear the image
     memset(fdf->img->pixels, 0, fdf->img->width * fdf->img->height * BPP);
-    draw_cross(fdf);
-    printf("MAP: size: %d wide: %d\n", map.actual_size, map.min_wide);
-    i = 0;
-    while (i < map.actual_size)
+
+    // Draw horizontal and vertical lines with offset applied
+    i = -1;
+    while (++i < fdf->map.actual_size)
     {
-        j = 0;
-        while (j < map.min_wide)
+        j = -1;
+        while (++j < fdf->map.min_wide)
         {
-            p1 = scale_and_offset(map.points[i][j], fdf);
-            if (j < map.min_wide - 1)
-                bresenham_line(fdf, p1, scale_and_offset(map.points[i][j + 1], fdf));
-            if (i < map.actual_size - 1)
-                bresenham_line(fdf, p1, scale_and_offset(map.points[i + 1][j], fdf));
-            j++;
+            // Draw horizontal line to the right
+            if (j < fdf->map.min_wide - 1)
+            {
+                bresenham_line(
+                    fdf,
+                    set_point(points[i][j],  fdf->cam),
+                    set_point(points[i][j + 1],  fdf->cam)
+                );
+            }
+            // Draw vertical line to the bottom
+            if (i < fdf->map.actual_size - 1)
+            {
+                bresenham_line(
+                    fdf,
+                    set_point(points[i][j],  fdf->cam),
+                    set_point(points[i + 1][j],  fdf->cam)
+                );
+            }
         }
-        i++;
     }
 }

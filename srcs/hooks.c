@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:34:57 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/17 22:48:59 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/26 00:50:46 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	my_scrollhook(double xdelta, double ydelta, void *param)
 {
-	t_fdf	*fdf;
+    t_fdf	*fdf;
 
 	(void)xdelta, (void)ydelta, (void)param;
 	fdf = (t_fdf *)param;
@@ -30,7 +30,7 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 		fdf->cam.scale /= 1.2; // Decrease grid space by 20%
 	}
 	// Redraw the map with the updated scale
-	draw_map2(fdf);
+	draw_map(fdf);
 }
 
 int key_is_allowed(int keynum)
@@ -61,6 +61,7 @@ void    my_key_hook(mlx_key_data_t keydata, void* param)
     if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
     {
         printf("Escape!\n");
+        mlx_terminate(fdf->mlx);
         exit(1);
     }
     else if (keydata.key == MLX_KEY_SLASH && keydata.action == MLX_PRESS)
@@ -68,16 +69,32 @@ void    my_key_hook(mlx_key_data_t keydata, void* param)
     else if (keydata.key == MLX_KEY_RIGHT_BRACKET && keydata.action == MLX_PRESS)
         printf("Scale DOWN!\n");
     else if (keydata.key == MLX_KEY_R && keydata.action == MLX_PRESS)
+    {
         printf("RESET!\n");
+        memset(&fdf->cam.key_offset, 0, sizeof(int[2]));
+        fdf->cam.scale = fdf->cam.initial_scale;
+    }
     else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+    {
         printf("Moving right!\n");
+        fdf->cam.key_offset[X] += SCREEN_WIDTH / 10;
+    }
     else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+    {
         printf("Moving left!\n");
+        fdf->cam.key_offset[X] -= SCREEN_WIDTH / 10;
+    }
     else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+    {
         printf("Moving up!\n");
+        fdf->cam.key_offset[Y] -= SCREEN_HEIGHT / 10;
+    }
     else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+    {
         printf("Moving down!\n");
+        fdf->cam.key_offset[Y] += SCREEN_HEIGHT / 10;
+    }
     // Redraw the map with the updated scale
     if (key_is_allowed(keydata.key))
-	    draw_map2(fdf);
+	    draw_map(fdf);
 }

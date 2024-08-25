@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:40:15 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/17 22:11:14 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/26 00:50:34 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	calc_screen_ratio(t_fdf *fdf)
 		fdf->cam.scale = ratio_width;
 	else
 		fdf->cam.scale = ratio_height;
+	fdf->cam.initial_scale = fdf->cam.scale;
 	printf("SCREEN_RATIO: %f\n", fdf->cam.scale);
 }
 

@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:53:57 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/11 22:40:53 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:45:39 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rotate_map(t_map *map)
 {
 	const double (*rot_z)[3] = get_rot_z(45);
     const double (*rot_x)[3] = get_rot_x(atan(sqrt(2)));
-    // const double (*proj)[3] = get_projection();      // Projection matrix
+    const double (*proj)[3] = get_projection();      // Projection matrix
 	int	i;
 	int	j;
 
@@ -28,7 +28,7 @@ void	rotate_map(t_map *map)
 		{
 			map->points[i][j] = mul_mat(rot_z, map->points[i][j]);
 			map->points[i][j] = mul_mat(rot_x, map->points[i][j]);
-			// map->points[i][j] = mul_mat(proj, map->points[i][j]);
+			map->points[i][j] = mul_mat(proj, map->points[i][j]);
 			j++;
 		}
 		i++;
