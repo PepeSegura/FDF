@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:58:58 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/26 00:14:45 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:35:30 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,12 @@
 mlx_t    *init_and_customize_mlx(t_fdf *fdf)
 {
     mlx_t           *mlx;
-	mlx_texture_t   *icon;
     mlx_win_cursor_t *cursor; 
 
     mlx_set_setting(MLX_DECORATED, false);
     mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, fdf->map.str, false);
 	if (mlx == NULL)
 		ft_error("Can't load mlx");
-    icon = mlx_load_png("fdf_ico.png");
-    mlx_set_icon(mlx, icon);
     cursor = mlx_create_std_cursor(MLX_CURSOR_CROSSHAIR);
     mlx_set_cursor(mlx, cursor);
     return (mlx);

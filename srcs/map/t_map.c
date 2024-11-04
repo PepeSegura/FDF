@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/25 23:15:30 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:42:03 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	init_map(t_map *map)
 
 void	resize_map(t_map *map)
 {
-	printf("resizing\n");
 	t_point	**new_points;
 	int		i;
 
+	printf("resizing\n");
 	map->max_size = map->max_size << 1;
 	new_points = ft_calloc(map->max_size, sizeof(t_point *));
 	if (new_points == NULL)
