@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:42:03 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/24 16:50:53 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,7 @@ void	skip_digits_and_set_color(t_point *point, char *line, int *i)
 		(*i)++;
 	if (line[*i] == ',')
 	{
-		// point->color = (ft_atoi(&line[*i+3]) << 8) | 0xFF; // SOOOOO COOOOL
-		point->color = ft_atol_16(&line[*i + 3]); // ORIGINAL COLORS
+		point->color = ((ft_atol_16(&line[*i + 3])) << 8) | 0xFF;
 		while (line[*i] && line[*i] != ' ')
 			(*i)++;
 	}
@@ -147,7 +146,6 @@ void	add_line(t_map *map, char *line)
 	int		size_line;
 	t_point	*points_line;
 
-	
 	if (map->actual_size == map->max_size)
 		resize_map(map);
 	size_line = count_points(line);

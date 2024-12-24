@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:53:57 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/25 21:45:39 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:16:00 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	rotate_map(t_map *map)
 {
-	const double (*rot_z)[3] = get_rot_z(45);
-    const double (*rot_x)[3] = get_rot_x(atan(sqrt(2)));
-    const double (*proj)[3] = get_projection();      // Projection matrix
-	int	i;
-	int	j;
+	const	double	(*rot_z)[3] = get_rot_z(45);
+	const	double	(*rot_x)[3] = get_rot_x(atan(sqrt(2)));
+	const	double	(*proj)[3] = get_projection();
+	int				i;
+	int				j;
 
 	i = 0;
 	while (i < map->actual_size)

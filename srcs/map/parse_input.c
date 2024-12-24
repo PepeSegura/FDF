@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:40:15 by psegura-          #+#    #+#             */
-/*   Updated: 2024/08/26 00:50:34 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/24 16:40:39 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	calc_screen_ratio(t_fdf *fdf)
 
 	ratio_width = (double)SCREEN_WIDTH / fdf->map.min_wide;
 	ratio_height = (double)SCREEN_HEIGHT / fdf->map.actual_size;
-	printf("SWIDE:   %f / %d = %f\n", (double)SCREEN_WIDTH, fdf->map.min_wide, ratio_width);
-	printf("SHEIGHT: %f / %d = %f\n", (double)SCREEN_HEIGHT, fdf->map.actual_size, ratio_height);
+	printf("SWIDE:   %f / %d = %f\n", (double)SCREEN_WIDTH, fdf->map.min_wide,
+		ratio_width);
+	printf("SHEIGHT: %f / %d = %f\n", (double)SCREEN_HEIGHT,
+		fdf->map.actual_size, ratio_height);
 	if (ratio_width < ratio_height)
 		fdf->cam.scale = ratio_width;
 	else
@@ -52,15 +54,14 @@ void	calc_screen_ratio(t_fdf *fdf)
 
 void	check_filename(char *str)
 {
-	char	*pos_ext;
+	char	*pos_x;
 	int		len;
 
-	pos_ext = ft_strrchr(str, '.');
-	if (pos_ext)
-		len = ft_strlen(pos_ext);
-	if (pos_ext == str || !pos_ext
-		|| len != 4 || !ft_strnstr(pos_ext, ".fdf", 10))
-		ft_error("Map extension is not \".fdf\"");
+	pos_x = ft_strrchr(str, '.');
+	if (pos_x)
+		len = ft_strlen(pos_x);
+	if (pos_x == str || !pos_x || len != 4 || !ft_strnstr(pos_x, ".fdf", 10))
+		ft_error(WRONG_EXT);
 }
 
 void	parse_input(int argc, char **argv, t_fdf *fdf)

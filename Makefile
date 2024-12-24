@@ -2,7 +2,7 @@ MAKEFLAGS	= --no-print-directory --silent
 
 NAME	 = fdf
 
-CFLAGS	 =	-Wextra -Wall -Werror -Wunreachable-code
+CFLAGS	 =	-Wextra -Wall -Werror #-Wunreachable-code
 CFLAGS	 += -I inc
 CFLAGS	 += -I libft
 CFLAGS	 += -O3
@@ -34,7 +34,9 @@ SRCS =							\
 								\
 		srcs/mlx/mlx_tools.c	\
 		srcs/mlx/draw.c			\
-		srcs/mlx/hooks.c		\
+		srcs/mlx/key_hook.c		\
+		srcs/mlx/mouse_hook.c	\
+		srcs/mlx/hook_tools.c	\
 								\
 		srcs/other/errors.c		\
 
