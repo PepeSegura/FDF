@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/24 16:50:53 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/25 12:25:37 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	skip_digits_and_set_color(t_point *point, char *line, int *i)
 	if (line[*i] == ',')
 	{
 		point->color = ((ft_atol_16(&line[*i + 3])) << 8) | 0xFF;
+		point->color_test.color = ((ft_atol_16(&line[*i + 3])) << 8) | 0xFF;
 		while (line[*i] && line[*i] != ' ')
 			(*i)++;
 	}
@@ -113,6 +114,7 @@ void	init_point(t_point *point, int x, int y)
 	point->x = x;
 	point->y = y;
 	point->color = DEFAULT_COLOR;
+	point->color_test.color = DEFAULT_COLOR;
 }
 
 void	init_points_line(char *line, t_point *points_line, int map_actual_size)
@@ -131,6 +133,13 @@ void	init_points_line(char *line, t_point *points_line, int map_actual_size)
 			init_point(&points_line[point], point, map_actual_size);
 			points_line[point].z = ft_atoi(&line[i]);
 			skip_digits_and_set_color(&points_line[point], line, &i);
+			printf("color:      %u\n", points_line[point].color);
+			printf("color_test: %u\n", points_line[point].color_test.color);
+			printf("r: %d\n", points_line[point].color_test.channels[R]);
+			printf("g: %d\n", points_line[point].color_test.channels[G]);
+			printf("b: %d\n", points_line[point].color_test.channels[B]);
+			printf("a: %d\n", points_line[point].color_test.channels[A]);
+			
 			point++;
 		}
 		else

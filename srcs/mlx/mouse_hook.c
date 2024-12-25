@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:02:50 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/24 18:02:53 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/25 12:00:33 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	my_scrollhook(double xdelta, double ydelta, void *param)
 {
-	(void)xdelta, (void)ydelta, (void)param;
+	(void)xdelta;
 	if (ydelta > 0)
 	{
 		printf("Scroll Up (Zoom In)\n");

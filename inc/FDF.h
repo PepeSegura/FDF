@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FDF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/24 18:07:28 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/25 12:23:42 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 # define DEFAULT_COLOR 0xFF0000FF
 
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT 1080
+# define SCREEN_WIDTH 800
+# define SCREEN_HEIGHT 800
 
 # define PI		3.14
 # define PI2	6.18
@@ -38,12 +38,25 @@
 
 # define WRONG_EXT "Map extension is not \".fdf\""
 
+# define R 3
+# define G 2
+# define B 1
+# define A 0
+# define ABGR 4
+
+typedef union u_color
+{
+	uint32_t	color;
+	uint8_t		channels[ABGR];
+}	t_color;
+
 typedef struct s_point
 {
 	double		x;
 	double		y;
 	double		z;
 	uint32_t	color;
+	t_color		color_test;
 }	t_point;
 
 typedef struct s_map_limits
