@@ -6,33 +6,11 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 01:35:32 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 02:33:07 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FDF.h"
-
-void	print_map(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	printf("\nSTART\n");
-	while (i < map->actual_size)
-	{
-		j = 0;
-		while (j < map->min_wide)
-		{
-			printf("(%.2f, %.2f, %.2f) ", map->points[i][j].x,
-				map->points[i][j].y, map->points[i][j].z);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("\nEND\n");
-}
 
 void	init_map(t_map *map)
 {
@@ -49,7 +27,6 @@ void	resize_map(t_map *map)
 	t_point	**new_points;
 	int		i;
 
-	printf("resizing\n");
 	map->max_size = map->max_size << 1;
 	new_points = ft_calloc(map->max_size, sizeof(t_point *));
 	if (new_points == NULL)

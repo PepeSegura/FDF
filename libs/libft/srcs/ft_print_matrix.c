@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_matrix.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 02:42:16 by psegura-          #+#    #+#             */
-/*   Updated: 2023/06/30 20:43:27 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 02:34:02 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_print_matrix(char **matrix, char *str)
 	i = 0;
 	while (matrix[i])
 	{
-		printf("%s [%d] -> [%s]\n", str, i, matrix[i]);
+		ft_printf("%s [%d] -> [%s]\n", str, i, matrix[i]);
 		i++;
 	}
 }

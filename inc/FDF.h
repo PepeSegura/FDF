@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 01:44:05 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 02:33:01 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ typedef struct s_fdf
 void	parse_input(int argc, char **argv, t_fdf *fdf);
 
 /* t_map.c */
-void	print_map(t_map *map);
 void	init_map(t_map *map);
 void	add_line(t_map *map, char *line);
 
@@ -121,6 +120,7 @@ void	rotate_map(t_map *map);
 
 /* projection.c */
 t_point	isometric(t_point p, t_fdf *fdf);
+void	apply_isometric(t_map *map, t_fdf *fdf);
 
 /* map_limits.c */
 void	set_offsets(t_fdf *fdf);

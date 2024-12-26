@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:40:15 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/24 16:40:39 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 02:46:56 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	create_map(t_map *map)
 	fd = open(map->str, O_RDONLY);
 	if (fd == -1)
 		ft_perror(map->str);
-	printf("fd: %d\n", fd);
 	init_map(map);
 	while (1)
 	{
@@ -40,16 +39,14 @@ void	calc_screen_ratio(t_fdf *fdf)
 
 	ratio_width = (double)SCREEN_WIDTH / fdf->map.min_wide;
 	ratio_height = (double)SCREEN_HEIGHT / fdf->map.actual_size;
-	printf("SWIDE:   %f / %d = %f\n", (double)SCREEN_WIDTH, fdf->map.min_wide,
-		ratio_width);
-	printf("SHEIGHT: %f / %d = %f\n", (double)SCREEN_HEIGHT,
-		fdf->map.actual_size, ratio_height);
+	printf("SWIDE:   [%f / %d = %f]\n", (double)SCREEN_WIDTH, fdf->map.min_wide, ratio_width);
+	printf("SHEIGHT: [%f / %d = %f]\n", (double)SCREEN_HEIGHT, fdf->map.actual_size, ratio_height);
 	if (ratio_width < ratio_height)
 		fdf->cam.scale = ratio_width;
 	else
 		fdf->cam.scale = ratio_height;
 	fdf->cam.initial_scale = fdf->cam.scale;
-	printf("SCREEN_RATIO: %f\n", fdf->cam.scale);
+	printf("SCREEN_RATIO: [%f]\n", fdf->cam.scale);
 }
 
 void	check_filename(char *str)
@@ -68,7 +65,6 @@ void	parse_input(int argc, char **argv, t_fdf *fdf)
 {
 	if (argc != 2)
 		ft_error("Invalid number of arguments.");
-	printf("filename: %s\n", argv[1]);
 	fdf->map.str = argv[1];
 	check_filename(fdf->map.str);
 	create_map(&fdf->map);

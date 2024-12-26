@@ -25,7 +25,6 @@ SRCS =									\
 										\
 		srcs/map/parse_input.c			\
 		srcs/map/t_map.c				\
-		srcs/map/modify_map.c			\
 		srcs/map/map_limits.c			\
 										\
 		srcs/math/matrix.c				\

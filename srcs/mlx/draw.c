@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:34:16 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/25 14:10:23 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 02:33:27 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	draw_cross(t_fdf *fdf)
 
 	i = 0;
 	j = 0;
-	printf("DRAW CROSS\n");
 	while (i < SCREEN_WIDTH)
 	{
 		mlx_put_pixel(fdf->img, i, SCREEN_HEIGHT / 2, 0xFF00FF);

@@ -6,19 +6,17 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 13:30:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/25 13:40:23 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 02:35:30 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FDF.h"
 
-// printf("(%d, %d) %u\n", x, y, color);
+// ft_printf("(%d, %d) %u\n", x, y, color);
 static void	plot_point(t_fdf *fdf, int x, int y, uint32_t color)
 {
 	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
-	{
 		mlx_put_pixel(fdf->img, x, y, (uint32_t)color);
-	}
 }
 
 static inline int	get_step(double a, double b)
@@ -57,7 +55,6 @@ static inline t_bresenham	init_struct(t_point a, t_point b)
 	return (bresenham);
 }
 
-// Bresenham's Line Algorithm with Color Gradient
 void	bresenham_line(t_fdf *fdf, t_point a, t_point b)
 {
 	t_bresenham	bre;

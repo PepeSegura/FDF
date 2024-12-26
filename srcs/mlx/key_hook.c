@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:34:57 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/24 18:03:36 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 02:33:40 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	apply_translation(t_fdf *fdf, int dir)
 
 void	reset_view(t_fdf *fdf)
 {
-	printf("RESET!\n");
+	ft_printf("RESET!\n");
 	ft_memset(&fdf->cam.key_offset, 0, sizeof(int [2]));
 	fdf->cam.scale = fdf->cam.initial_scale;
 }
@@ -36,17 +36,17 @@ void	apply_scale(t_fdf *fdf, int scale)
 	(void)fdf;
 	if (scale == PLUS)
 	{
-		printf("Scale UP!\n");
+		ft_printf("Scale UP!\n");
 	}
 	else if (scale == MINUS)
 	{
-		printf("Scale DOWN!\n");
+		ft_printf("Scale DOWN!\n");
 	}
 }
 
 void	exit_fdf(t_fdf *fdf)
 {
-	printf("Escape!\n");
+	ft_printf("Escape!\n");
 	mlx_terminate(fdf->mlx);
 	exit(0);
 }

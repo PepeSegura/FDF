@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 13:24:21 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 01:38:50 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 02:32:27 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	set_offsets(t_fdf *fdf)
 
 	// Calculate the bounding box of the scaled points
 	get_bounding_box(&fdf->map, fdf->cam.scale);
-	printf("getbounding: min X: %d Y: %d - max X: %d Y: %d\n", fdf->map.limits.min[X], fdf->map.limits.min[Y], fdf->map.limits.max[X], fdf->map.limits.max[Y]);
+	ft_printf("getbounding: min X: %d Y: %d - max X: %d Y: %d\n", fdf->map.limits.min[X], fdf->map.limits.min[Y], fdf->map.limits.max[X], fdf->map.limits.max[Y]);
 	// Calculate the center of the bounding box
 	mid[X] = (fdf->map.limits.min[X] + fdf->map.limits.max[X]) / 2;
 	mid[Y] = (fdf->map.limits.min[Y] + fdf->map.limits.max[Y]) / 2;
-	printf("center: X: %d Y: %d\n", mid[X], mid[Y]);
+	ft_printf("center: X: %d Y: %d\n", mid[X], mid[Y]);
 	// Calculate the offset to center the image in the window
 	fdf->cam.offsets[X] = ((SCREEN_WIDTH / 2) - mid[X]) + fdf->cam.key_offset[X];
 	fdf->cam.offsets[Y] = ((SCREEN_HEIGHT / 2) - mid[Y]) + fdf->cam.key_offset[Y];
-	printf("setofsets() X: %d Y: %d\n", fdf->cam.offsets[X], fdf->cam.offsets[Y]);
+	ft_printf("setofsets() X: %d Y: %d\n", fdf->cam.offsets[X], fdf->cam.offsets[Y]);
 }
