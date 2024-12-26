@@ -20,25 +20,25 @@ LIBS	=	$(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 LIBS	+=	$(LIBFT)/libft.a
 
 
-SRCS =							\
-		srcs/main.c				\
-								\
-		srcs/map/parse_input.c	\
-		srcs/map/t_map.c		\
-		srcs/map/modify_map.c	\
-		srcs/map/map_limits.c	\
-								\
-		srcs/math/matrix.c		\
-		srcs/math/bresenham.c	\
-		srcs/math/projection.c	\
-								\
-		srcs/mlx/mlx_tools.c	\
-		srcs/mlx/draw.c			\
-		srcs/mlx/key_hook.c		\
-		srcs/mlx/mouse_hook.c	\
-		srcs/mlx/hook_tools.c	\
-								\
-		srcs/other/errors.c		\
+SRCS =									\
+		srcs/main.c						\
+										\
+		srcs/map/parse_input.c			\
+		srcs/map/t_map.c				\
+		srcs/map/modify_map.c			\
+		srcs/map/map_limits.c			\
+										\
+		srcs/math/matrix.c				\
+		srcs/math/interpolate_colors.c	\
+		srcs/math/bresenham.c			\
+		srcs/math/projection.c			\
+										\
+		srcs/mlx/draw.c					\
+		srcs/mlx/key_hook.c				\
+		srcs/mlx/mouse_hook.c			\
+		srcs/mlx/hook_tools.c			\
+										\
+		srcs/other/errors.c				\
 
 
 OBJS = $(patsubst srcs/%.c, objs/srcs/%.o, $(SRCS))

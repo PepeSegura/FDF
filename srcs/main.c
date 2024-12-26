@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:58:58 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/24 16:49:48 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 01:48:56 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,33 @@ void	mlx_stuff(t_fdf *fdf)
 	mlx_terminate(mlx);
 }
 
+# define SCALE 10
+
+inline void normalize_height2(t_point *point, t_map *map)
+{
+	double segment_size = (map->limits.max[Z] - map->limits.min[Z]) / SCALE;
+	point->z = (point->z - map->limits.min[Z]) / segment_size;
+}
+
+void	rotate_map2(t_map *map, t_fdf *fdf)
+{
+	int				i;
+	int				j;
+
+	i = 0;
+	while (i < map->actual_size)
+	{
+		j = 0;
+		while (j < map->min_wide)
+		{
+			normalize_height2(&map->points[i][j], map);
+			map->points[i][j] = isometric(map->points[i][j], fdf);
+			j++;
+		}
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_fdf	fdf;
@@ -51,10 +78,13 @@ int	main(int argc, char **argv)
 	(void)argc, (void)argv;
 	ft_bzero(&fdf, sizeof(fdf));
 	parse_input(argc, argv, &fdf);
+	printf("HEIGHT:\nMIN:%d MAX: %d\n", fdf.map.limits.min[Z], fdf.map.limits.max[Z]);
 	printf("INPUT %s\n", fdf.map.str);
 	printf("WIDE_MAP: [%d]\n", fdf.map.min_wide);
 	printf("HEIGHT_MAP: [%d]\n", fdf.map.actual_size);
-	rotate_map(&fdf.map);
+	// rotate_map(&fdf.map);
+	rotate_map2(&fdf.map, &fdf);
+	
 	mlx_stuff(&fdf);
 	exit(EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:26:02 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/25 12:25:37 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 01:35:32 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,22 +102,28 @@ void	skip_digits_and_set_color(t_point *point, char *line, int *i)
 		(*i)++;
 	if (line[*i] == ',')
 	{
-		point->color = ((ft_atol_16(&line[*i + 3])) << 8) | 0xFF;
-		point->color_test.color = ((ft_atol_16(&line[*i + 3])) << 8) | 0xFF;
+		point->c.color = ((ft_atol_16(&line[*i + 3])) << 8) | 0xFF;
 		while (line[*i] && line[*i] != ' ')
 			(*i)++;
 	}
+}
+
+inline void	update_map_height(t_map *map, int point_height)
+{
+	if (point_height < map->limits.min[Z])
+		map->limits.min[Z] = point_height;
+	else if (point_height > map->limits.max[Z])
+		map->limits.max[Z] = point_height;
 }
 
 void	init_point(t_point *point, int x, int y)
 {
 	point->x = x;
 	point->y = y;
-	point->color = DEFAULT_COLOR;
-	point->color_test.color = DEFAULT_COLOR;
+	point->c.color = DEFAULT_COLOR;
 }
 
-void	init_points_line(char *line, t_point *points_line, int map_actual_size)
+void	init_points_line(char *line, t_point *points_line, int map_actual_size, t_map *map)
 {
 	int	i;
 	int	point;
@@ -132,14 +138,8 @@ void	init_points_line(char *line, t_point *points_line, int map_actual_size)
 		{
 			init_point(&points_line[point], point, map_actual_size);
 			points_line[point].z = ft_atoi(&line[i]);
+			update_map_height(map, points_line[point].z);
 			skip_digits_and_set_color(&points_line[point], line, &i);
-			printf("color:      %u\n", points_line[point].color);
-			printf("color_test: %u\n", points_line[point].color_test.color);
-			printf("r: %d\n", points_line[point].color_test.channels[R]);
-			printf("g: %d\n", points_line[point].color_test.channels[G]);
-			printf("b: %d\n", points_line[point].color_test.channels[B]);
-			printf("a: %d\n", points_line[point].color_test.channels[A]);
-			
 			point++;
 		}
 		else
@@ -165,7 +165,7 @@ void	add_line(t_map *map, char *line)
 	points_line = ft_calloc(size_line, sizeof(t_point));
 	if (points_line == NULL)
 		ft_error("Malloc failed");
-	init_points_line(line, points_line, map->actual_size);
+	init_points_line(line, points_line, map->actual_size, map);
 	map->points[map->actual_size] = points_line;
 	map->actual_size++;
 }

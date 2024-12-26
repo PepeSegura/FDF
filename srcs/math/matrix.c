@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:14:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/11/04 13:20:11 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/25 20:54:35 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ const double	(*get_projection(void))[3]
 {
 	static const double	projection_array[3][3] = {
 	{1, 0, 0},
-    {0, 1, 0},
-    {0, 0, 0}
+	{0, 1, 0},
+	{0, 0, 1}
 	};
+
 	return (projection_array);
 }
 
@@ -82,7 +83,7 @@ t_point	mul_mat(const double m[3][3], t_point p)
 	ft_bzero(&result, sizeof(t_point));
 	result.x = (m[0][0] * (double)p.x) + (m[0][1] * (double)p.y) + (m[0][2] * (double)p.z);
 	result.y = (m[1][0] * (double)p.x) + (m[1][1] * (double)p.y) + (m[1][2] * (double)p.z);
-	result.z = (m[2][0] * (double)p.x) + (m[2][1] * (double)p.y) + (m[1][2] * (double)p.z);
-    result.color = p.color;
+	result.z = (m[2][0] * (double)p.x) + (m[2][1] * (double)p.y) + (m[2][2] * (double)p.z);
+	result.c.color = p.c.color;
 	return (result);
 }

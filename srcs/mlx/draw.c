@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:34:16 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/24 18:05:23 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/25 14:10:23 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_point	set_point(t_point s, t_camera cam)
 	d.x = s.x * cam.scale + cam.offsets[X];
 	d.y = s.y * cam.scale + cam.offsets[Y];
 	d.z = s.z;
-	d.color = s.color;
+	d.c.color = s.c.color;
 	return (d);
 }
 

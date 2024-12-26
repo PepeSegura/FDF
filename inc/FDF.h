@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/25 12:23:42 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 01:44:05 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 
 # include "libft.h"
 # include "keys.h"
-// # include "MLX42/MLX42.h"
 
 # define FILE_EXT ".fdf"
 
-# define DEFAULT_COLOR 0xFF0000FF
+# define DEFAULT_COLOR 0x6a5de2FF
 
 # define SCREEN_WIDTH 800
 # define SCREEN_HEIGHT 800
@@ -55,16 +54,18 @@ typedef struct s_point
 	double		x;
 	double		y;
 	double		z;
-	uint32_t	color;
-	t_color		color_test;
+	t_color		c;
 }	t_point;
+
+# define X 0
+# define Y 1
+# define Z 2
+# define XYZ 3
 
 typedef struct s_map_limits
 {
-	int	min_x;
-	int	min_y;
-	int	max_x;
-	int	max_y;
+	int min[XYZ];
+	int max[XYZ];
 }	t_map_limits;
 
 typedef struct s_map
@@ -76,9 +77,6 @@ typedef struct s_map
 	char			*str;
 	t_map_limits	limits;
 }	t_map;
-
-# define X 0
-# define Y 1
 
 typedef struct s_camera
 {
@@ -121,13 +119,6 @@ t_point	mul_mat(const double matrix[3][3], t_point point);
 /* modify_map.c */
 void	rotate_map(t_map *map);
 
-/* mlx_tools.c */
-int		get_rgba(int r, int g, int b, int a);
-int		get_r(int rgba);
-int		get_g(int rgba);
-int		get_b(int rgba);
-int		get_a(int rgba);
-
 /* projection.c */
 t_point	isometric(t_point p, t_fdf *fdf);
 
@@ -144,6 +135,9 @@ void	my_scrollhook(double xdelta, double ydelta, void *param);
 /* hook_tools.c*/
 bool	number_in_array(int len, const int array[len], int to_find);
 
+/* interpolate_color.c */
+uint32_t	inter(uint32_t color1, uint32_t color2, float t);
+
 /* bresenham.c */
 typedef struct s_bresenham
 {
@@ -153,7 +147,6 @@ typedef struct s_bresenham
 	int	sy;
 	int	err;
 	int	err2;
-
 	int	total_steps;
 	int	current_step;
 }	t_bresenham;
