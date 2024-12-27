@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 13:30:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 02:35:30 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 15:07:05 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static inline int	check_points(t_point a, t_point b)
 	return (0);
 }
 
-static inline t_bresenham	init_struct(t_point a, t_point b)
+static inline t_bresenham	init_bresenham(t_point a, t_point b)
 {
 	t_bresenham	bresenham;
 
@@ -62,7 +62,7 @@ void	bresenham_line(t_fdf *fdf, t_point a, t_point b)
 
 	if (check_points(a, b) == 1)
 		return ;
-	bre = init_struct(a, b);
+	bre = init_bresenham(a, b);
 	while (1)
 	{
 		t = (float)bre.current_step / bre.total_steps;

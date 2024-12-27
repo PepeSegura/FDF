@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:14:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 02:43:15 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 23:57:24 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ inline double	rad(double deg)
 	return (deg * M_PI / 180);
 }
 
-const double	(*get_projection(void))[3]
-{
-	static const double	projection_array[3][3] = {
-	{1, 0, 0},
-	{0, 1, 0},
-	{0, 0, 1}
-	};
+// const double	(*get_projection(void))[3]
+// {
+// 	static const double	projection_array[3][3] = {
+// 	{1, 0, 0},
+// 	{0, 1, 0},
+// 	{0, 0, 1}
+// 	};
 
-	return (projection_array);
-}
+// 	return (projection_array);
+// }
 
-const double	(*get_rot_x(double angle))[3]
+const double	(*g_get_rot_x(double angle))[3]
 {
 	static double	rotate_x_array[3][3];
 
@@ -44,7 +44,7 @@ const double	(*get_rot_x(double angle))[3]
 	return ((const double (*)[3])rotate_x_array);
 }
 
-const double	(*get_rot_y(double angle))[3]
+const double	(*g_get_rot_y(double angle))[3]
 {
 	static double	rotate_y_array[3][3];
 
@@ -60,7 +60,7 @@ const double	(*get_rot_y(double angle))[3]
 	return ((const double (*)[3])rotate_y_array);
 }
 
-const double	(*get_rot_z(double angle))[3]
+const double	(*g_get_rot_z(double angle))[3]
 {
 	static double	rotate_z_array[3][3];
 

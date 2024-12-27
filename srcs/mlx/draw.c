@@ -6,30 +6,11 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:34:16 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 02:33:27 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 15:08:31 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FDF.h"
-
-void	draw_cross(t_fdf *fdf)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < SCREEN_WIDTH)
-	{
-		mlx_put_pixel(fdf->img, i, SCREEN_HEIGHT / 2, 0xFF00FF);
-		i++;
-	}
-	while (j < SCREEN_HEIGHT)
-	{
-		mlx_put_pixel(fdf->img, SCREEN_WIDTH / 2, j, 0xFF00FF);
-		j++;
-	}
-}
 
 t_point	set_point(t_point s, t_camera cam)
 {

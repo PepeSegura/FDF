@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 02:33:01 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/27 01:15:26 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 # include "libft.h"
 # include "keys.h"
+
+# define VALID_CHARS "+-0123456789,xabcdef \f\n\r\t\v"
+# define DIGITS_SYMBOLS "0123456789+-"
 
 # define FILE_EXT ".fdf"
 
@@ -64,8 +67,8 @@ typedef struct s_point
 
 typedef struct s_map_limits
 {
-	int min[XYZ];
-	int max[XYZ];
+	int	min[XYZ];
+	int	max[XYZ];
 }	t_map_limits;
 
 typedef struct s_map
@@ -102,38 +105,38 @@ typedef struct s_fdf
 }	t_fdf;
 
 /* parse_input.c */
-void	parse_input(int argc, char **argv, t_fdf *fdf);
+void		parse_input(int argc, char **argv, t_fdf *fdf);
 
 /* t_map.c */
-void	init_map(t_map *map);
-void	add_line(t_map *map, char *line);
+void		add_line(t_map *map, char *line);
+
+/* t_map_aux.c */
+void		init_pline(char *line, t_point *pline, int map_size, t_map *map);
 
 /* matrix.c */
-const double	(*get_projection(void))[3];
-const double	(*get_rot_x(double angle))[3];
-const double	(*get_rot_y(double angle))[3];
-const double	(*get_rot_z(double angle))[3];
-t_point	mul_mat(const double matrix[3][3], t_point point);
+// const double	(*g_get_projection(void))[3];
+const double	(*g_get_rot_x(double angle))[3];
+const double	(*g_get_rot_y(double angle))[3];
+const double	(*g_get_rot_z(double angle))[3];
 
-/* modify_map.c */
-void	rotate_map(t_map *map);
+t_point		mul_mat(const double matrix[3][3], t_point point);
 
 /* projection.c */
-t_point	isometric(t_point p, t_fdf *fdf);
-void	apply_isometric(t_map *map, t_fdf *fdf);
+t_point		isometric(t_point p, t_fdf *fdf);
+void		apply_isometric(t_map *map, t_fdf *fdf);
 
 /* map_limits.c */
-void	set_offsets(t_fdf *fdf);
+void		set_offsets(t_fdf *fdf);
 
 /* draw.c */
-void	draw_map(t_fdf *fdf);
+void		draw_map(t_fdf *fdf);
 
 /* hooks.c */
-void	my_key_hook(mlx_key_data_t keydata, void *param);
-void	my_scrollhook(double xdelta, double ydelta, void *param);
+void		my_key_hook(mlx_key_data_t keydata, void *param);
+void		my_scrollhook(double xdelta, double ydelta, void *param);
 
-/* hook_tools.c*/
-bool	number_in_array(int len, const int array[len], int to_find);
+/* hooks_tools.c*/
+bool		number_in_array(int len, const int array[len], int to_find);
 
 /* interpolate_color.c */
 uint32_t	inter(uint32_t color1, uint32_t color2, float t);
@@ -151,10 +154,10 @@ typedef struct s_bresenham
 	int	current_step;
 }	t_bresenham;
 
-void	bresenham_line(t_fdf *fdf, t_point a, t_point b);
+void		bresenham_line(t_fdf *fdf, t_point a, t_point b);
 
 /* errors.c */
-void	ft_perror(char *msg);
-void	ft_error(char *str);
+void		ft_perror(char *msg);
+void		ft_error(char *str);
 
 #endif

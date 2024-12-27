@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:58:58 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 02:45:45 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/27 01:12:44 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ int	main(int argc, char **argv)
 	(void)argc, (void)argv;
 	ft_bzero(&fdf, sizeof(fdf));
 	parse_input(argc, argv, &fdf);
-	ft_printf("INPUT: [%s]\n", fdf.map.str);
-	ft_printf("MIN_Z: [%d] MAX_Z: [%d]\n", fdf.map.limits.min[Z], fdf.map.limits.max[Z]);
-	ft_printf("WIDTH_MAP:  [%d]\n", fdf.map.min_wide);
-	ft_printf("HEIGHT_MAP: [%d]\n", fdf.map.actual_size);
 	apply_isometric(&fdf.map, &fdf);
 	mlx_stuff(&fdf);
 	exit(EXIT_SUCCESS);

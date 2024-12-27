@@ -25,17 +25,17 @@ SRCS =									\
 										\
 		srcs/map/parse_input.c			\
 		srcs/map/t_map.c				\
+		srcs/map/t_map_aux.c			\
 		srcs/map/map_limits.c			\
 										\
 		srcs/math/matrix.c				\
 		srcs/math/interpolate_colors.c	\
 		srcs/math/bresenham.c			\
-		srcs/math/projection.c			\
+		srcs/math/isometric.c			\
 										\
 		srcs/mlx/draw.c					\
-		srcs/mlx/key_hook.c				\
-		srcs/mlx/mouse_hook.c			\
-		srcs/mlx/hook_tools.c			\
+		srcs/mlx/hooks.c				\
+		srcs/mlx/hooks_tools.c			\
 										\
 		srcs/other/errors.c				\
 

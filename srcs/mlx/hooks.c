@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:34:57 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 02:33:40 by psegura-         ###   ########.fr       */
+/*   Updated: 2024/12/26 15:01:19 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,6 @@ void	reset_view(t_fdf *fdf)
 	fdf->cam.scale = fdf->cam.initial_scale;
 }
 
-void	apply_scale(t_fdf *fdf, int scale)
-{
-	(void)fdf;
-	if (scale == PLUS)
-	{
-		ft_printf("Scale UP!\n");
-	}
-	else if (scale == MINUS)
-	{
-		ft_printf("Scale DOWN!\n");
-	}
-}
-
 void	exit_fdf(t_fdf *fdf)
 {
 	ft_printf("Escape!\n");
@@ -65,9 +52,17 @@ void	my_key_hook(mlx_key_data_t keydata, void *param)
 		exit_fdf(fdf);
 	else if (keydata.key == RESET)
 		reset_view(fdf);
-	else if (number_in_array(2, (int []){MINUS, PLUS}, keydata.key))
-		apply_scale(fdf, keydata.key);
 	else if (number_in_array(4, (int []){RIGHT, LEFT, UP, DOWN}, keydata.key))
 		apply_translation(fdf, keydata.key);
 	draw_map(fdf);
+}
+
+void	my_scrollhook(double xdelta, double ydelta, void *param)
+{
+	(void)xdelta;
+	if (ydelta > 0)
+		((t_fdf *)param)->cam.scale *= 1.2;
+	else if (ydelta < 0)
+		((t_fdf *)param)->cam.scale *= 0.8;
+	draw_map((t_fdf *)param);
 }
