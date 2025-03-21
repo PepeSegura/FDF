@@ -6,7 +6,7 @@
 /*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:14:53 by psegura-          #+#    #+#             */
-/*   Updated: 2025/03/21 12:11:29 by psegura-         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:59:47 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ inline double	rad(double deg)
 // 	{0, 1, 0},
 // 	{0, 0, 1}
 // 	};
-
 // 	return (projection_array);
 // }
 
@@ -44,7 +43,7 @@ t_matrix3x3	*g_get_rot_x(double angle)
 	return ((const double (*)[3])rotate_x_array);
 }
 
-t_matrix3x3 *g_get_rot_y(double angle)
+t_matrix3x3	*g_get_rot_y(double angle)
 {
 	static double	rotate_y_array[3][3];
 
@@ -60,7 +59,7 @@ t_matrix3x3 *g_get_rot_y(double angle)
 	return ((const double (*)[3])rotate_y_array);
 }
 
-t_matrix3x3 *g_get_rot_z(double angle)
+t_matrix3x3	*g_get_rot_z(double angle)
 {
 	static double	rotate_z_array[3][3];
 
