@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:14:53 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 23:57:24 by psegura-         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:11:29 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ inline double	rad(double deg)
 // 	return (projection_array);
 // }
 
-const double	(*g_get_rot_x(double angle))[3]
+t_matrix3x3	*g_get_rot_x(double angle)
 {
 	static double	rotate_x_array[3][3];
 
@@ -44,7 +44,7 @@ const double	(*g_get_rot_x(double angle))[3]
 	return ((const double (*)[3])rotate_x_array);
 }
 
-const double	(*g_get_rot_y(double angle))[3]
+t_matrix3x3 *g_get_rot_y(double angle)
 {
 	static double	rotate_y_array[3][3];
 
@@ -60,7 +60,7 @@ const double	(*g_get_rot_y(double angle))[3]
 	return ((const double (*)[3])rotate_y_array);
 }
 
-const double	(*g_get_rot_z(double angle))[3]
+t_matrix3x3 *g_get_rot_z(double angle)
 {
 	static double	rotate_z_array[3][3];
 
@@ -76,7 +76,7 @@ const double	(*g_get_rot_z(double angle))[3]
 	return ((const double (*)[3])rotate_z_array);
 }
 
-t_point	mul_mat(const double m[3][3], t_point p)
+t_point	mul_mat(t_matrix3x3 m[3], t_point p)
 {
 	t_point	result;
 

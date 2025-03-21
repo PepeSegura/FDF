@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FDF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:42:44 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/27 01:15:26 by psegura-         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:09:01 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,13 @@ void		add_line(t_map *map, char *line);
 /* t_map_aux.c */
 void		init_pline(char *line, t_point *pline, int map_size, t_map *map);
 
+typedef const double	t_matrix3x3[3];
+
 /* matrix.c */
 // const double	(*g_get_projection(void))[3];
-const double	(*g_get_rot_x(double angle))[3];
-const double	(*g_get_rot_y(double angle))[3];
-const double	(*g_get_rot_z(double angle))[3];
+t_matrix3x3	*g_get_rot_x(double angle);
+t_matrix3x3	*g_get_rot_y(double angle);
+t_matrix3x3	*g_get_rot_z(double angle);
 
 t_point		mul_mat(const double matrix[3][3], t_point point);
 

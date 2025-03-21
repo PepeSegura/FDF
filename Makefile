@@ -1,4 +1,4 @@
-MAKEFLAGS	= --no-print-directory --silent
+MAKEFLAGS	= --no-print-directory #--silent
 
 NAME	 = fdf
 
@@ -7,7 +7,7 @@ CFLAGS	 += -I inc
 CFLAGS	 += -I libft
 CFLAGS	 += -O3
 
-DEBUG	 =	-g3 -fsanitize=address,leak
+DEBUG	 =	#-g3 -fsanitize=address
 
 CPPFLAGS =	-MMD
 
@@ -43,16 +43,20 @@ SRCS =									\
 OBJS = $(patsubst srcs/%.c, objs/srcs/%.o, $(SRCS))
 DEPS = $(OBJS:.o=.d)
 
-all: libmlx libft $(NAME)
+all: $(NAME)
 
-libmlx:
-	@cmake -DDEBUG=1 $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+MLX_LIB = $(LIBMLX)/build/libmlx42.a
 
-libft:
+$(MLX_LIB):
+	@cmake -DDEBUG=0 $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+
+LIBFT_LIB = $(LIBFT)/libft.a
+
+$(LIBFT_LIB):
 	@make -C $(LIBFT)
 
-$(NAME): $(OBJS)
-	$(CC) $(DEBUG) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME) && printf "Linking: $(NAME)\n"
+$(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
+	@$(CC) $(DEBUG) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME) && printf "Linking: $(NAME)\n"
 
 objs/srcs/%.o: ./srcs/%.c
 	@mkdir -p $(dir $@)
