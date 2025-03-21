@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   isometric.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psegura- <psegura-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: psegura- <psegura-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 13:01:05 by psegura-          #+#    #+#             */
-/*   Updated: 2024/12/26 23:55:31 by psegura-         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:30:32 by psegura-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ inline void	normalize_z(t_point *point, t_map *map)
 		- (double)map->limits.min[Z];
 	const double	tile_size = range / SCALE;
 
-	point->z = (point->z - (double)map->limits.min[Z]) / tile_size;
+	if (point->z != 0)
+		point->z = (point->z - (double)map->limits.min[Z]) / tile_size;
 }
 
 t_point	isometric(t_point p, t_fdf *fdf)
